@@ -37,6 +37,7 @@ def load_bert(model_path: str, with_model=True) -> Tuple[Optional[Model], Tokeni
     tokenizer = Tokenizer(dict_path, do_lower_case=True)  # 建立分词器
     if with_model:
         model = build_transformer_model(config_path, checkpoint_path)
+        model.run_eagerly = False
     else:
         model = None
     return model, tokenizer

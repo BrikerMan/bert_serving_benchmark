@@ -19,6 +19,7 @@ def read_reports() -> pd.DataFrame:
         item = {
             'task': task,
             'model': model,
+            'Failed request': 0
         }
 
         for line in content:
@@ -34,18 +35,28 @@ def read_reports() -> pd.DataFrame:
                 count = float(count)
                 item['Time per request'] = count
 
+            if line.startswith('Failed requests:'):
+                count = line.replace('Failed requests:', '').strip()
+                count = int(count)
+                item['Failed request'] = count
+
+            if line.startswith('Complete requests:'):
+                count = line.replace('Complete requests:', '').strip()
+                count = int(count)
+                item['Complete requests'] = count
+
         data.append(item)
     df = pd.DataFrame(data).sort_values(['task', 'model'])
     return df
 
+
 if __name__ == '__main__':
     df = read_reports()
     print(df.to_markdown())
-
-    ax = sns.barplot(x="model", y="Requests per second", hue="task",
-                     data=df[df['task'] == 'predict'])
-    ax.get_figure().savefig("predict.png")
-
-    ax = sns.barplot(x="model", y="Requests per second", hue="task",
-                     data=df[df['task'] == 'tokenize'])
-    ax.get_figure().savefig("tokenize.png")
+    # ax = sns.barplot(x="model", y="Requests per second", hue="task",
+    #                  data=df[df['task'] == 'predict'])
+    # ax.get_figure().savefig("predict.png")
+    #
+    # ax = sns.barplot(x="model", y="Requests per second", hue="task",
+    #                  data=df[df['task'] == 'tokenize'])
+    # ax.get_figure().savefig("tokenize.png")

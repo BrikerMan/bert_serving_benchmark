@@ -7,7 +7,7 @@ from typing import Tuple
 
 app = Flask(__name__)
 
-if os.environ['TF_SERVING'] == 'True':
+if os.environ.get('TF_SERVING') == 'True':
     model, tokenizer = toolkit.load_bert(toolkit.download_bert_if_needs(), with_model=False)
 else:
     model, tokenizer = toolkit.load_bert(toolkit.download_bert_if_needs())
@@ -61,4 +61,4 @@ def parse():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5050)

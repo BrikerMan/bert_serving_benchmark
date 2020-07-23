@@ -58,17 +58,18 @@ def run_container_and_ab(tf_serving: bool, debug: bool = False):
         time.sleep(3)
         try_times += 1
 
-async def get_cpu_state(method):
-    while True:
-        if os.path.exists('./results/performance.json'):
-            with open('./results/performance.json', 'r') as f:
-                content = json.loads(f.read())
-        else:
-            content = {}
 
+async def record_cpu_ram_state(method):
+    if os.path.exists('./results/performance.json'):
+        with open('./results/performance.json', 'r') as f:
+            content = json.loads(f.read())
+    else:
+        content = {}
+    content[method] = []
+    while True:
         if method not in content:
             content[method] = []
-        cpu = psutil.cpu_percent()
+        cpu = sum(psutil.cpu_percent(percpu=True))
         ram = psutil.virtual_memory().used / 1024 / 1024
         content[method].append({
             'index': len(content[method]),
@@ -76,11 +77,11 @@ async def get_cpu_state(method):
             'ram': ram
         })
         with open('./results/performance.json', 'w') as f:
-            f.write(json.dumps(content))
+            f.write(json.dumps(content, indent=2))
 
         await asyncio.sleep(1)
-        print(f"RAM: {ram}")
-        print(f"CPU: {cpu}")
+        print(f"RAM: {ram} CPU: {cpu}")
+
 
 async def performance_report(name: str = 'fastapi', tf_serving: bool = False, debug: bool = False):
     query = urllib.parse.quote('今天天气不错呀')
@@ -92,7 +93,7 @@ async def performance_report(name: str = 'fastapi', tf_serving: bool = False, de
     for task_name, task_url in tasks.items():
         cmd = f"ab -n 500 -c 10 {task_url}"
         p = await asyncio.create_subprocess_shell(cmd,
-            stdin=PIPE, stdout=PIPE, stderr=STDOUT)
+                                                  stdin=PIPE, stdout=PIPE, stderr=STDOUT)
         result_byte, _ = (await p.communicate())
         result = result_byte.decode()
         with open(f"./results/{name}{'_tf' if tf_serving else ''}_{task_name}.txt", 'w') as f:
@@ -100,14 +101,13 @@ async def performance_report(name: str = 'fastapi', tf_serving: bool = False, de
         print(f'--------- {task_name} Performance ----------')
         print(result)
 
+
 async def start_test(name: str = 'fastapi', tf_serving: bool = False, debug: bool = False):
+    cpu_record_task = asyncio.create_task(record_cpu_ram_state(f"{name}{'_tf' if tf_serving else ''}"))
     setup_env_variables(name=name, tf_serving=tf_serving, debug=debug)
     run_container_and_ab(tf_serving=tf_serving, debug=debug)
 
     pathlib.Path('./results').mkdir(exist_ok=True)
-
-
-    cpu_record_task = asyncio.create_task(get_cpu_state(name))
     ab_test_task = asyncio.create_task(performance_report(name, tf_serving, debug))
 
     # Wait until ab finished, then cancel the cpu recording
