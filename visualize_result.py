@@ -35,13 +35,17 @@ def read_reports() -> pd.DataFrame:
                 item['Time per request'] = count
 
         data.append(item)
-    return pd.DataFrame(data)
-
+    df = pd.DataFrame(data).sort_values(['task', 'model'])
+    return df
 
 if __name__ == '__main__':
     df = read_reports()
     print(df.to_markdown())
 
     ax = sns.barplot(x="model", y="Requests per second", hue="task",
-                     data=df)
-    ax.get_figure().savefig("output.png")
+                     data=df[df['task'] == 'predict'])
+    ax.get_figure().savefig("predict.png")
+
+    ax = sns.barplot(x="model", y="Requests per second", hue="task",
+                     data=df[df['task'] == 'tokenize'])
+    ax.get_figure().savefig("tokenize.png")

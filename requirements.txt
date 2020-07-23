@@ -7,3 +7,7 @@ httpx
 
 tensorflow
 bert4keras
+
+psutil
+pandas
+seaborn
