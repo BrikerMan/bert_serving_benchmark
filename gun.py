@@ -1,6 +1,9 @@
 import json
 import multiprocessing
 import os
+import toolkit
+
+toolkit.download_bert_if_needs()
 
 host = "0.0.0.0"
 port = 5050
