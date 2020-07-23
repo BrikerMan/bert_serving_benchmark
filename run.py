@@ -6,7 +6,8 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-m', '--method', type=str, nargs='+',
-                    help='runner methos: {fastapi, flask, all}')
+                    help='runner methos: {fastapi, flask, all}',
+                    default=['all'])
 
 def run_container_and_ab():
     os.system("docker-compose -f docker/base.yml down")
