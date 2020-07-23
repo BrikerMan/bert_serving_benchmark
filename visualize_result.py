@@ -1,0 +1,47 @@
+import glob
+import pandas as pd
+import seaborn as sns
+
+sns.set()
+
+
+def read_reports() -> pd.DataFrame:
+    report_files = glob.glob('./results/*.txt')
+
+    data = []
+
+    for i in report_files:
+        rows = i.split('/')[-1].replace('.txt', '').split('_')
+        task = rows.pop(len(rows) - 1)
+        model = '_'.join(rows)
+        with open(i, 'r') as f:
+            content = f.read().splitlines()
+        item = {
+            'task': task,
+            'model': model,
+        }
+
+        for line in content:
+            if line.startswith('Requests per second:'):
+                count = line.replace('Requests per second:', '').strip()
+                count = count.split('[#/sec]')[0]
+                count = float(count)
+                item['Requests per second'] = count
+
+            if line.startswith('Time per request:') and not line.endswith('concurrent requests)'):
+                count = line.replace('Time per request:', '').strip()
+                count = count.split('[ms] (mean)')[0]
+                count = float(count)
+                item['Time per request'] = count
+
+        data.append(item)
+    return pd.DataFrame(data)
+
+
+if __name__ == '__main__':
+    df = read_reports()
+    print(df.to_markdown())
+
+    ax = sns.barplot(x="model", y="Requests per second", hue="task",
+                     data=df)
+    ax.get_figure().savefig("output.png")

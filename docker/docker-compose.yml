@@ -1,6 +1,18 @@
 version: "3.6"
 
 services:
+  tf_serving:
+    image: "tensorflow/serving:2.2.0"
+    container_name: tf_serving
+    ports:
+      - target: 8501
+        published: 8501
+        protocol: tcp
+    volumes:
+      - ../data/bert_saved_model:/models/bert
+    environment:
+      MODEL_NAME: bert
+
   api:
     build:
       context: ./../
@@ -14,10 +26,11 @@ services:
       - ../data:/code/data
     tty: true
     environment:
-      API_MODULE: ${API_MODULE}
-      WORKER_CLASS: ${WORKER_CLASS}
+      API_MODULE: ${API_MODULE:-fastapi_app.main}
+      WORKER_CLASS: ${WORKER_CLASS:-uvicorn.workers.UvicornWorker}
       WORKER_COUNT: ${WORKER_COUNT:-4}
       LOG_LEVEL: ${LOG_LEVEL:-DEBUG}
+      TF_SERVING: ${TF_SERVING:-False}
     healthcheck:
       test: curl --fail http://0.0.0.0:${API_PORT:-5050}/ || exit 1
       interval: 60s
