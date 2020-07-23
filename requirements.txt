@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+gevent
+gunicorn
+flask
+
+tensorflow
+bert4keras
