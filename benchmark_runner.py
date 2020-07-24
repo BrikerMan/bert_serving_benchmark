@@ -122,13 +122,14 @@ class BenchmarkRunner:
         query = urllib.parse.quote('今天天气不错呀')
         tasks = {
             'predict': f'http://127.0.0.1:5050/parse?sentence={query}',
-            'tokenize': f'http://127.0.0.1:5050/parse?tokenize={query}',
+            'tokenize': f'http://127.0.0.1:5050/tokenize?sentence={query}',
+            'hello_world': f'http://127.0.0.1:5050/hello_world',
         }
 
         for task_name, task_url in tasks.items():
             concurrency = self.number_of_concurrency
             requests = self.number_of_requests
-            if task_name == 'tokenize':
+            if task_name != 'predict':
                 requests = requests * 10
                 concurrency = concurrency * 2
 

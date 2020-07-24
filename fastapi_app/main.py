@@ -15,15 +15,17 @@ if os.environ['TF_SERVING'] == 'True':
     model, tokenizer = toolkit.load_bert(toolkit.download_bert_if_needs(), with_model=False)
 else:
     model, tokenizer = toolkit.load_bert(toolkit.download_bert_if_needs())
-    token_ids, segment_ids = tokenizer.encode(u'Setup flask api')
-    x1, x2 = np.array([token_ids]), np.array([segment_ids])
+
+token_ids, segment_ids = tokenizer.encode(u'Setup flask api')
+x1, x2 = np.array([token_ids]), np.array([segment_ids])
+if model:
     res = model.predict([x1, x2])
     print('\n' + '=' * 80)
     print(f'Setup model finished, predict result shape: {res.shape}')
     print('=' * 80 + '\n')
 
 
-@app.get("/")
+@app.get("/hello_world")
 async def hello_world():
     return {"Hello": "World"}
 
