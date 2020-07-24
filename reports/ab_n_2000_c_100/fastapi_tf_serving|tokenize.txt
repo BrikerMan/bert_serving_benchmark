@@ -24,30 +24,30 @@ Document Path:          /tokenize?sentence=%E4%BB%8A%E5%A4%A9%E5%A4%A9%E6%B0%94%
 Document Length:        78 bytes
 
 Concurrency Level:      200
-Time taken for tests:   5.551 seconds
+Time taken for tests:   5.825 seconds
 Complete requests:      20000
 Failed requests:        0
 Total transferred:      4060000 bytes
 HTML transferred:       1560000 bytes
-Requests per second:    3602.90 [#/sec] (mean)
-Time per request:       55.511 [ms] (mean)
-Time per request:       0.278 [ms] (mean, across all concurrent requests)
-Transfer rate:          714.25 [Kbytes/sec] received
+Requests per second:    3433.58 [#/sec] (mean)
+Time per request:       58.248 [ms] (mean)
+Time per request:       0.291 [ms] (mean, across all concurrent requests)
+Transfer rate:          680.68 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    1   1.6      1      13
-Processing:     1   54  43.6     46     455
-Waiting:        1   50  41.2     42     441
-Total:          1   55  44.1     47     456
+Connect:        0    1   1.6      1      12
+Processing:     1   57  53.2     46     539
+Waiting:        1   52  50.4     41     537
+Total:          1   58  53.5     47     539
 
 Percentage of the requests served within a certain time (ms)
   50%     47
   66%     61
-  75%     73
-  80%     80
-  90%    101
-  95%    125
-  98%    160
-  99%    193
- 100%    456 (longest request)
+  75%     74
+  80%     86
+  90%    107
+  95%    127
+  98%    171
+  99%    233
+ 100%    539 (longest request)

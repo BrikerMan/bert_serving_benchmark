@@ -123,7 +123,7 @@ class BenchmarkRunner:
         tasks = {
             'predict': f'http://127.0.0.1:5050/parse?sentence={query}',
             'tokenize': f'http://127.0.0.1:5050/tokenize?sentence={query}',
-            'helloworld': f'http://127.0.0.1:5050/hello_world',
+            'hello_world': f'http://127.0.0.1:5050/hello_world',
         }
 
         for task_name, task_url in tasks.items():

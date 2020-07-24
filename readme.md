@@ -46,7 +46,7 @@ python visualize_result.py -p ./reports/ab_n_3000_c_200
 | hello_world | flask              |                0 |           400 |               30000 |               1678.35 |            238.329 |
 | hello_world | flask_tf_serving   |                0 |           400 |               30000 |               1686.84 |            237.13  |
 | predict     | fastapi            |                7 |           200 |                3000 |                 15.54 |          12869.7   |
-| predict     | fastapi_tf_serving |             2855 |           200 |                3000 |                 37.01 |           5403.35  |
+| predict     | fastapi_tf_serving |                0 |           200 |                3000 |                 20.41 |           9797.7   |
 | predict     | flask              |                0 |           nan |                 nan |                nan    |            nan     |
 | predict     | flask_tf_serving   |                0 |           200 |                3000 |                 24.62 |           8123.88  |
 | tokenize    | fastapi            |                0 |           400 |               30000 |               3707.93 |            107.877 |
@@ -70,13 +70,14 @@ python visualize_result.py -p ./reports/ab_n_2000_c_100
 | hello_world | flask              |                0 |           200 |               20000 |               1697.7  |            117.806 |
 | hello_world | flask_tf_serving   |                0 |           200 |               20000 |               1735.41 |            115.246 |
 | predict     | fastapi            |                0 |           100 |                2000 |                 15.44 |           6478.27  |
-| predict     | fastapi_tf_serving |              287 |           100 |                2000 |                 21.72 |           4603.06  |
+| predict     | fastapi_tf_serving |                0 |           100 |                2000 |                 23.1  |           4328.98  |
 | predict     | flask              |                0 |           nan |                 nan |                nan    |            nan     |
 | predict     | flask_tf_serving   |                0 |           100 |                2000 |                 24.48 |           4085.34  |
 | tokenize    | fastapi            |                0 |           200 |               20000 |               3734.98 |             53.548 |
-| tokenize    | fastapi_tf_serving |                0 |           200 |               20000 |               3602.9  |             55.511 |
+| tokenize    | fastapi_tf_serving |                0 |           200 |               20000 |               3433.58 |             58.248 |
 | tokenize    | flask              |                0 |           200 |               20000 |               1511.37 |            132.331 |
 | tokenize    | flask_tf_serving   |                0 |           200 |               20000 |               1546.1  |            129.358 |
+
 
 ![](./reports/ab_n_2000_c_100/ram_cpu_stats.png)
 

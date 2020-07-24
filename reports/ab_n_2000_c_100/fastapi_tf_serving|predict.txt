@@ -24,32 +24,30 @@ Document Path:          /parse?sentence=%E4%BB%8A%E5%A4%A9%E5%A4%A9%E6%B0%94%E4%
 Document Length:        85233 bytes
 
 Concurrency Level:      100
-Time taken for tests:   92.061 seconds
+Time taken for tests:   86.580 seconds
 Complete requests:      2000
-Failed requests:        287
-   (Connect: 0, Receive: 0, Length: 287, Exceptions: 0)
-Non-2xx responses:      287
-Total transferred:      146273331 bytes
-HTML transferred:       146010156 bytes
-Requests per second:    21.72 [#/sec] (mean)
-Time per request:       4603.062 [ms] (mean)
-Time per request:       46.031 [ms] (mean, across all concurrent requests)
-Transfer rate:          1551.63 [Kbytes/sec] received
+Failed requests:        0
+Total transferred:      170722000 bytes
+HTML transferred:       170466000 bytes
+Requests per second:    23.10 [#/sec] (mean)
+Time per request:       4328.982 [ms] (mean)
+Time per request:       43.290 [ms] (mean, across all concurrent requests)
+Transfer rate:          1925.63 [Kbytes/sec] received
 
 Connection Times (ms)
               min  mean[+/-sd] median   max
-Connect:        0    0   0.7      0       4
-Processing:    98 4496 618.9   4505    6409
-Waiting:       92 4494 620.2   4504    6408
-Total:         98 4496 618.6   4505    6411
+Connect:        0    1   1.1      0       8
+Processing:    95 4272 5204.0   2068   22970
+Waiting:       90 2693 3314.7   1480   22963
+Total:         95 4272 5204.7   2068   22972
 
 Percentage of the requests served within a certain time (ms)
-  50%   4505
-  66%   4723
-  75%   4875
-  80%   4978
-  90%   5042
-  95%   5059
-  98%   5098
-  99%   5298
- 100%   6411 (longest request)
+  50%   2068
+  66%   4193
+  75%   6047
+  80%   7075
+  90%   8477
+  95%  21055
+  98%  22970
+  99%  22970
+ 100%  22972 (longest request)
