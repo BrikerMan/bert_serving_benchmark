@@ -5,8 +5,8 @@ import seaborn as sns
 sns.set()
 
 
-def read_reports() -> pd.DataFrame:
-    report_files = glob.glob('./results/*.txt')
+def read_reports(path: str) -> pd.DataFrame:
+    report_files = glob.glob(f'{path}/*.txt')
 
     data = []
 
@@ -45,18 +45,24 @@ def read_reports() -> pd.DataFrame:
                 count = int(count)
                 item['Complete requests'] = count
 
+            if line.startswith('Concurrency Level:'):
+                count = line.replace('Concurrency Level:', '').strip()
+                count = int(count)
+                item['Concurrency'] = count
+
         data.append(item)
     df = pd.DataFrame(data).sort_values(['task', 'model'])
     return df
 
 
 if __name__ == '__main__':
-    df = read_reports()
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-p', '--path', type=str,
+                        help='report files path')
+    args = parser.parse_args()
+
+    df = read_reports(args.path)
+    print('==== result of folder {args.path} ====')
     print(df.to_markdown())
-    # ax = sns.barplot(x="model", y="Requests per second", hue="task",
-    #                  data=df[df['task'] == 'predict'])
-    # ax.get_figure().savefig("predict.png")
-    #
-    # ax = sns.barplot(x="model", y="Requests per second", hue="task",
-    #                  data=df[df['task'] == 'tokenize'])
-    # ax.get_figure().savefig("tokenize.png")

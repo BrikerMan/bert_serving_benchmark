@@ -32,34 +32,36 @@ export WORKER_COUNT=8
 ```
 
 ```
-ab -n 1000 -c 50 http://host:port/task
+ab -n 2000 -c 100 http://host:port/predict
+ab -n 20000 -c 200 http://host:port/tokenize
 ```
 
-| task     | model      |   Failed request |   Complete requests |   Requests per second |   Time per request |
-|:---------|:-----------|-----------------:|--------------------:|----------------------:|-------------------:|
-| predict  | fastapi    |                0 |                1000 |                 12.83 |           3896.94  |
-| predict  | fastapi_tf |                0 |                1000 |                 20.77 |           2406.94  |
-| predict  | flask      |                0 |                 nan |                nan    |            nan     |
-| predict  | flask_tf   |                0 |                1000 |                 21.53 |           2322.59  |
-| tokenize | fastapi    |                0 |                1000 |               1084.46 |             46.106 |
-| tokenize | fastapi_tf |                0 |                1000 |               1143.56 |             43.723 |
-| tokenize | flask      |                0 |                1000 |                672.36 |             74.365 |
-| tokenize | flask_tf   |                0 |                1000 |                684.84 |             73.009 |
+|    | task     | model      |   Failed request |   Concurrency |   Complete requests |   Requests per second |   Time per request |
+|---:|:---------|:-----------|-----------------:|--------------:|--------------------:|----------------------:|-------------------:|
+|  2 | predict  | fastapi    |                0 |           100 |                2000 |                 15.58 |           6418.62  |
+|  5 | predict  | fastapi_tf |                0 |           100 |                2000 |                 15.55 |           6430.08  |
+|  3 | predict  | flask      |             1789 |           100 |                2000 |                 55.59 |           1798.88  |
+|  7 | predict  | flask_tf   |                0 |           nan |                 nan |                nan    |            nan     |
+|  0 | tokenize | fastapi    |                0 |           200 |               20000 |               4165.32 |             48.016 |
+|  4 | tokenize | fastapi_tf |                0 |           200 |               20000 |               4065.69 |             49.192 |
+|  1 | tokenize | flask      |                0 |           200 |               20000 |               1426.87 |            140.167 |
+|  6 | tokenize | flask_tf   |                0 |           200 |               20000 |               1509.65 |            132.481 |
 
 ```
-ab -n 1000 -c 20 http://host:port/task
+ab -n 1000 -c 50 http://host:port/predict
+ab -n 10000 -c 100 http://host:port/tokenize
 ```
 
-|    | task     | model      |   Failed request |   Complete requests |   Requests per second |   Time per request |
-|---:|:---------|:-----------|-----------------:|--------------------:|----------------------:|-------------------:|
-|  2 | predict  | fastapi    |                0 |                1000 |                 13.04 |           1533.71  |
-|  0 | predict  | fastapi_tf |                0 |                1000 |                 21.14 |            945.925 |
-|  6 | predict  | flask      |                0 |                 nan |                nan    |            nan     |
-|  1 | predict  | flask_tf   |                0 |                1000 |                 19.09 |           1047.71  |
-|  4 | tokenize | fastapi    |                0 |                1000 |                813.16 |             24.595 |
-|  5 | tokenize | fastapi_tf |                0 |                1000 |                932.96 |             21.437 |
-|  7 | tokenize | flask      |                0 |                1000 |                596.36 |             33.537 |
-|  3 | tokenize | flask_tf   |                0 |                1000 |                613.6  |             32.594 |
+|    | task     | model      |   Failed request |   Concurrency |   Complete requests |   Requests per second |   Time per request |
+|---:|:---------|:-----------|-----------------:|--------------:|--------------------:|----------------------:|-------------------:|
+|  2 | predict  | fastapi    |                0 |            50 |                1000 |                 14.28 |           3500.48  |
+|  5 | predict  | fastapi_tf |                0 |            50 |                1000 |                 14.41 |           3469.32  |
+|  3 | predict  | flask      |                0 |           nan |                 nan |                nan    |            nan     |
+|  7 | predict  | flask_tf   |                0 |           nan |                 nan |                nan    |            nan     |
+|  0 | tokenize | fastapi    |                0 |           100 |               10000 |               4043.94 |             24.728 |
+|  4 | tokenize | fastapi_tf |                0 |           100 |               10000 |               4046.14 |             24.715 |
+|  1 | tokenize | flask      |                0 |           100 |               10000 |               1324.8  |             75.483 |
+|  6 | tokenize | flask_tf   |                0 |           100 |               10000 |               1504.53 |             66.466 |
 
 ```
 ab -n 500 -c 10 http://host:port/task

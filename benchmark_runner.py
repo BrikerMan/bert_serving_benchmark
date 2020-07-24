@@ -181,7 +181,7 @@ if __name__ == "__main__":
                              number_of_concurrency=args.concurrency,
                              debug=args.debug)
 
-    all_methods = ['fastapi', 'flask', 'fastapi_tf', 'flask_tf']
+    all_methods = ['fastapi', 'flask', 'fastapi_tf_serving', 'flask_tf_serving']
     t_methods = []
 
     if args.method == ['all']:
