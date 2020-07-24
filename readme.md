@@ -1,6 +1,6 @@
 # Bert Serving Benchmark
 
-This repo is a bechmark for different serving BERT methods.
+This repo is a benchmark for different methods of serving BERT.
 
 Requirements:
 
@@ -30,7 +30,7 @@ python3 benchmark_runner.py -m fastapi_tf  # run fastapi with tf_serving
 
 ## Result
 
-On GCP `n1-standard-4 (4 vCPU, 15 GB memory)` instance with Ubuntu 20.04 LTS Minimal OS with `WORKER_COUNT=8`.
+On GCP `n1-standard-4 (4 vCPU, 15 GB memory)` instance with Ubuntu 20.04 LTS Minimal OS, set `WORKER_COUNT=8`.
 
 
 ```shell
