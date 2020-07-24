@@ -1,0 +1,53 @@
+This is ApacheBench, Version 2.3 <$Revision: 1843412 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 2000 requests
+Completed 4000 requests
+Completed 6000 requests
+Completed 8000 requests
+Completed 10000 requests
+Completed 12000 requests
+Completed 14000 requests
+Completed 16000 requests
+Completed 18000 requests
+Completed 20000 requests
+Finished 20000 requests
+
+
+Server Software:        uvicorn
+Server Hostname:        127.0.0.1
+Server Port:            5050
+
+Document Path:          /hello_world
+Document Length:        17 bytes
+
+Concurrency Level:      200
+Time taken for tests:   3.986 seconds
+Complete requests:      20000
+Failed requests:        0
+Total transferred:      2840000 bytes
+HTML transferred:       340000 bytes
+Requests per second:    5017.85 [#/sec] (mean)
+Time per request:       39.858 [ms] (mean)
+Time per request:       0.199 [ms] (mean, across all concurrent requests)
+Transfer rate:          695.83 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   1.8      1      14
+Processing:     1   38  27.0     32     188
+Waiting:        1   35  25.2     29     179
+Total:          1   40  27.2     34     189
+
+Percentage of the requests served within a certain time (ms)
+  50%     34
+  66%     45
+  75%     52
+  80%     58
+  90%     73
+  95%     96
+  98%    113
+  99%    133
+ 100%    189 (longest request)

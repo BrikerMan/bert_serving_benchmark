@@ -1,0 +1,53 @@
+This is ApacheBench, Version 2.3 <$Revision: 1843412 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 2000 requests
+Completed 4000 requests
+Completed 6000 requests
+Completed 8000 requests
+Completed 10000 requests
+Completed 12000 requests
+Completed 14000 requests
+Completed 16000 requests
+Completed 18000 requests
+Completed 20000 requests
+Finished 20000 requests
+
+
+Server Software:        gunicorn/20.0.4
+Server Hostname:        127.0.0.1
+Server Port:            5050
+
+Document Path:          /tokenize?sentence=%E4%BB%8A%E5%A4%A9%E5%A4%A9%E6%B0%94%E4%B8%8D%E9%94%99%E5%91%80
+Document Length:        79 bytes
+
+Concurrency Level:      200
+Time taken for tests:   12.936 seconds
+Complete requests:      20000
+Failed requests:        0
+Total transferred:      4620000 bytes
+HTML transferred:       1580000 bytes
+Requests per second:    1546.10 [#/sec] (mean)
+Time per request:       129.358 [ms] (mean)
+Time per request:       0.647 [ms] (mean, across all concurrent requests)
+Transfer rate:          348.78 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.7      0       9
+Processing:     2  128 103.0     99     696
+Waiting:        2  127 102.9     97     696
+Total:          2  129 102.9     99     697
+
+Percentage of the requests served within a certain time (ms)
+  50%     99
+  66%    142
+  75%    176
+  80%    200
+  90%    273
+  95%    342
+  98%    416
+  99%    472
+ 100%    697 (longest request)

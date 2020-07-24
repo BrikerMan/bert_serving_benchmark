@@ -123,7 +123,7 @@ class BenchmarkRunner:
         tasks = {
             'predict': f'http://127.0.0.1:5050/parse?sentence={query}',
             'tokenize': f'http://127.0.0.1:5050/tokenize?sentence={query}',
-            'hello_world': f'http://127.0.0.1:5050/hello_world',
+            'helloworld': f'http://127.0.0.1:5050/hello_world',
         }
 
         for task_name, task_url in tasks.items():
@@ -142,7 +142,7 @@ class BenchmarkRunner:
                                                       stdin=PIPE, stdout=PIPE, stderr=STDOUT)
             result_byte, _ = (await p.communicate())
             result = result_byte.decode()
-            with open(os.path.join(self.report_path, f'{method_name}_{task_name}.txt'), 'w') as f:
+            with open(os.path.join(self.report_path, f'{method_name}|{task_name}.txt'), 'w') as f:
                 f.write(result)
 
             print(f'----- {task_name} Performance Report ------')

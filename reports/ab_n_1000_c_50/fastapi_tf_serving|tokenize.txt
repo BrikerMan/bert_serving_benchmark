@@ -1,0 +1,55 @@
+This is ApacheBench, Version 2.3 <$Revision: 1843412 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking 127.0.0.1 (be patient)
+Completed 1000 requests
+Completed 2000 requests
+Completed 3000 requests
+Completed 4000 requests
+Completed 5000 requests
+Completed 6000 requests
+Completed 7000 requests
+Completed 8000 requests
+Completed 9000 requests
+Completed 10000 requests
+Finished 10000 requests
+
+
+Server Software:        uvicorn
+Server Hostname:        127.0.0.1
+Server Port:            5050
+
+Document Path:          /tokenize?sentence=%E4%BB%8A%E5%A4%A9%E5%A4%A9%E6%B0%94%E4%B8%8D%E9%94%99%E5%91%80
+Document Length:        78 bytes
+
+Concurrency Level:      100
+Time taken for tests:   3.066 seconds
+Complete requests:      10000
+Failed requests:        0
+Total transferred:      2030000 bytes
+HTML transferred:       780000 bytes
+Requests per second:    3261.46 [#/sec] (mean)
+Time per request:       30.661 [ms] (mean)
+Time per request:       0.307 [ms] (mean, across all concurrent requests)
+Transfer rate:          646.56 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    1   0.9      0       8
+Processing:     1   30  37.5     22     512
+Waiting:        1   28  36.7     20     507
+Total:          1   30  37.7     23     512
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%     23
+  66%     31
+  75%     39
+  80%     44
+  90%     57
+  95%     71
+  98%     95
+  99%    113
+ 100%    512 (longest request)
