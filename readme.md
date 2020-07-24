@@ -25,6 +25,12 @@ python3 benchmark_runner.py -m fastapi_tf  # run fastapi with tf_serving
 
 ## Result
 
+On GCP `n1-standard-4 (4 vCPU, 15 GB memory)` instance with Ubuntu 20.04 LTS Minimal OS.
+
+```
+export WORKER_COUNT=8
+```
+
 ```
 ab -n 1000 -c 50 http://host:port/task
 ```

@@ -1,13 +1,4 @@
-fastapi
-uvicorn
-gevent
-gunicorn
-flask
 httpx
-
-tensorflow
-bert4keras
-
 psutil
 pandas
 seaborn

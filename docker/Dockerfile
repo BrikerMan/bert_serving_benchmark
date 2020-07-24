@@ -13,7 +13,7 @@ ENV PYTHONPATH=/code/ \
     TERM=xterm-256color
 
 WORKDIR /code
-COPY ./requirements.txt /code/requirements.txt
+COPY ./requirements.container.txt /code/requirements.txt
 RUN pip3 install -r /code/requirements.txt --no-cache-dir
 
 COPY . /code/

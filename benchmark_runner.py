@@ -146,6 +146,7 @@ class BenchmarkRunner:
 
             print(f'----- {task_name} Performance Report ------')
             print(result)
+            await asyncio.sleep(10)
 
     async def run(self, method_name: str):
         print(f'======== Start test method {method_name} ========')
