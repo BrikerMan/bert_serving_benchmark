@@ -15,11 +15,11 @@ Just run, ab test results will be saved to `reports` folder.
 ```shell
 python3 benchmark_runner.py   # run all models
 
-python3 benchmark_runner.py -m flask     # run flask and serve model inside flask
-python3 benchmark_runner.py -m flask_tf  # run flask with tf_serving
+python3 benchmark_runner.py -m flask             # run flask and serve model inside flask
+python3 benchmark_runner.py -m flask_tf_serving  # run flask with tf_serving
 
-python3 benchmark_runner.py -m fastapi     # run fastapi and serve model inside fastapi
-python3 benchmark_runner.py -m fastapi_tf  # run fastapi with tf_serving
+python3 benchmark_runner.py -m fastapi              # run fastapi and serve model inside fastapi
+python3 benchmark_runner.py -m fastapi_tf_serving   # run fastapi with tf_serving
 ```
 
 ## Tasks

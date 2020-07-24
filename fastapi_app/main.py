@@ -55,9 +55,7 @@ async def parse(sentence: str):
             "Input-Token": i1.tolist(),
             "Input-Segment": i2.tolist()
         } for i1, i2 in zip(x1, x2)]
-        async with httpx.AsyncClient() as client:
-            r = await client.post("http://tf_serving:8501/v1/models/bert:predict",
-                                  json={"instances": tensor})
+        r = requests.post("http://tf_serving:8501/v1/models/bert:predict", json={"instances": tensor})
         res = r.json()['predictions']
 
     return {
