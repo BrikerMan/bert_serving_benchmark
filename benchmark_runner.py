@@ -108,7 +108,6 @@ class BenchmarkRunner:
             try:
                 async with httpx.AsyncClient() as client:
                     r = await client.get('http://127.0.0.1:5050/parse?sentence=1234545')
-                    print(r.status_code)
                     if r.status_code == 200:
                         print(f"Request success, start ab after 10s")
                         await asyncio.sleep(10)
